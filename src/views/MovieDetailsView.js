@@ -5,6 +5,7 @@ import routes from '../routes';
 import Cast from './Cast';
 import Reviews from './Reviews';
 import s from './Movies.module.css';
+import poster from '../images/default_poster.jpg';
 
 // const CastView = lazy(() =>
 //   import('./Cast' /* webpackChunkName: "cast-view" */),
@@ -85,8 +86,11 @@ class MovieDetailsView extends Component {
           Вернуться назад
         </button>{' '}
         <div className={s.containerMoviePage}>
-          {poster_path && (
-            <img src={`${BASE_IMAGE_URL}${poster_path}`} alt={title} />
+          {this.state.movie && (
+            <img
+              src={poster_path ? `${BASE_IMAGE_URL}${poster_path}` : poster}
+              alt={title}
+            />
           )}
           <div className={s.containerMovieDescr}>
             <h2 className={s.movieTille}>{title}</h2>
