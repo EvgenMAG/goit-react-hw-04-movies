@@ -1,0 +1,157 @@
+.gallery {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+/*
+ * Стили компонента ImageGalleryItem
+ */
+.ImageGalleryItem {
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ImageGalleryItem__image {
+  margin-bottom: 15px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 2px solid black;
+}
+
+.ImageGalleryItem:hover {
+  transform: scale(1.03);
+  cursor: zoom-in;
+}
+
+.linkStyle {
+  display: block;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
+  color: tomato;
+}
+
+.actorContainer {
+  position: relative;
+}
+
+.galleryActor {
+  display: grid;
+  max-width: calc(100vw - 20px);
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ActorGalleryItem__image {
+  margin-bottom: 15px;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.titleActor {
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  font-weight: 900;
+  color: white;
+  z-index: 21;
+}
+.characterName {
+  position: absolute;
+  bottom: 35px;
+  left: 25px;
+  font-style: italic;
+  font-weight: 500;
+  color: black;
+  z-index: 20;
+}
+
+.contrastBox {
+  position: absolute;
+  bottom: 15px;
+
+  width: 168px;
+  height: 60px;
+
+  background-color: rgb(128, 128, 128, 0.8);
+}
+
+.aboutMovieLink {
+  display: inline-block;
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aboutMovieLink.active {
+  border: 2px solid red;
+  border-radius: 10px;
+  transform: scale(1.2);
+}
+
+.buttonBack {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.containerMoviePage {
+  display: flex;
+}
+
+.containerMovieDescr {
+  margin-left: 20px;
+}
+
+.movieTille {
+  margin-bottom: 30px;
+}
+.movieVote {
+  font-size: 20px;
+  margin-bottom: 100px;
+  font-style: italic;
+}
+.movieVoteScore {
+  font-weight: bold;
+  color: tomato;
+}
+
+.movieGenre {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.genresList {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: lighter;
+}
