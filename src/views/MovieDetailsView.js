@@ -59,17 +59,9 @@ class MovieDetailsView extends Component {
     }
 
     history.push(location.state.from);
-    // this.props.history.push({
-    //   // pathname: routes.movies,
-    //   search: `?query=${query}`,
-    // });
-    // history.push(routes.movies);
-
-    // history.push(location?.state?.from || routes.movies);
   };
 
   render() {
-    // console.log(this.state.cast);
     const {
       genres,
       overview,
@@ -82,9 +74,6 @@ class MovieDetailsView extends Component {
     const queryFromSearchLocation = location.state
       ? `${location.state.searchQuery}`
       : '';
-
-    console.log(pathFrom);
-    // console.log(this.props.location.state.serachQuery);
 
     return (
       <div className="container-fluid">
