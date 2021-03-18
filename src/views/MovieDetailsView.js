@@ -1,18 +1,18 @@
 import { Route, Switch, NavLink } from 'react-router-dom';
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import apiFetch from '../api-service/Api-service';
 import routes from '../routes';
-import Cast from './Cast';
-import Reviews from './Reviews';
+// import Cast from './Cast';
+// import Reviews from './Reviews';
 import s from './Movies.module.css';
 import poster from '../images/default_poster.jpg';
 
-// const CastView = lazy(() =>
-//   import('./Cast' /* webpackChunkName: "cast-view" */),
-// );
-// const Reviews = lazy(() =>
-//   import('./Reviews' /* webpackChunkName: "Reviews-view" */),
-// );
+const CastView = lazy(() =>
+  import('./Cast' /* webpackChunkName: "cast-view" */),
+);
+const Reviews = lazy(() =>
+  import('./Reviews' /* webpackChunkName: "Reviews-view" */),
+);
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -26,8 +26,6 @@ class MovieDetailsView extends Component {
       title: null,
       vote_average: null,
     },
-    cast: [],
-    reviews: [],
   };
 
   componentDidMount() {
@@ -36,12 +34,6 @@ class MovieDetailsView extends Component {
     apiFetch
       .getMovieById(moviesId)
       .then(data => this.setState({ movie: { ...data } }));
-    apiFetch.getMovieCast(moviesId).then(data => {
-      this.setState({ cast: data.cast.slice(0, 10) });
-    });
-    apiFetch.getMovieReview(moviesId).then(data => {
-      this.setState({ reviews: data.results });
-    });
   }
 
   handleGoBack = () => {
@@ -69,6 +61,7 @@ class MovieDetailsView extends Component {
       poster_path,
       title,
       vote_average,
+      id,
     } = this.state.movie;
     const { match, location } = this.props;
     const pathFrom = location.state ? `${location.state.from}` : '';
@@ -86,7 +79,7 @@ class MovieDetailsView extends Component {
           Вернуться назад
         </button>{' '}
         <div className={s.containerMoviePage}>
-          {this.state.movie && (
+          {id && (
             <img
               src={poster_path ? `${BASE_IMAGE_URL}${poster_path}` : poster}
               alt={title}
@@ -140,20 +133,20 @@ class MovieDetailsView extends Component {
             Review
           </NavLink>
         </div>
-        <Switch>
-          <Route
-            exact
-            path={routes.movieCast}
-            render={props => <Cast {...props} movieCast={this.state.cast} />}
-          />
-          <Route
-            exact
-            path={routes.movieReviews}
-            render={props => (
-              <Reviews {...props} movieReview={this.state.reviews} />
-            )}
-          />
-        </Switch>
+        <Suspense>
+          <Switch>
+            <Route
+              exact
+              path={routes.movieCast}
+              render={props => <CastView {...props} movieId={id} />}
+            />
+            <Route
+              exact
+              path={routes.movieReviews}
+              render={props => <Reviews {...props} movieId={id} />}
+            />
+          </Switch>
+        </Suspense>
       </div>
     );
   }

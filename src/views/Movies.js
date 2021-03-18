@@ -29,7 +29,6 @@ class Movies extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('Returning from PAGE');
     const { query: previousSearch } = prevState;
     const { query: currentSearch } = this.state;
 
@@ -62,8 +61,6 @@ class Movies extends Component {
   render() {
     const { match } = this.props;
     const { query } = this.state;
-    console.log(this.state.movies);
-    console.log(this.state.query);
 
     return (
       <>
